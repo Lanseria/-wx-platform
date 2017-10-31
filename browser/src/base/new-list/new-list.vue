@@ -1,9 +1,9 @@
 <template>
   <div class="new-list">
     <ul>
-      <li class="item" v-for="(article, index) in news" :key="index">
+      <li class="item" v-for="(article, index) in news" :key="index" @click="selectItem(article)">
         <div class="img">
-          <img :src="article.thumb" alt="">
+          <img :src="article.cover" alt="">
         </div>
         <div class="content">
           <h2 class="name">{{article.title}}</h2>
@@ -24,8 +24,8 @@ export default {
   mounted () {
   },
   methods: {
-    selectItem (item, index) {
-      this.$emit('select', item, index)
+    selectItem (item) {
+      this.$emit('select', item)
     }
   }
 }

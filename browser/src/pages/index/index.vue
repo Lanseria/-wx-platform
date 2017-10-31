@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <scroll class="scrollwrapper" :data="dataSource">
-      <new-list :news="dataSource"></new-list>
+      <new-list :news="dataSource" @select="jumpTo"></new-list>
     </scroll>
   </div>
 </template>
@@ -9,8 +9,9 @@
 <script>
 import Scroll from 'base/scroll/scroll'
 import NewList from 'base/new-list/new-list'
-import Mock from 'mockjs'
+// import Mock from 'mockjs'
 import { ERR_OK } from 'api/config'
+import { getNewsList } from 'api/newlist'
 export default {
   data () {
     return {
@@ -21,19 +22,27 @@ export default {
     this._fetchData()
   },
   methods: {
+    jumpTo (item) {
+      window.location.href = item.link
+    },
     _fetchData () {
-      fetch('http://rapapi.org/mockjs/26963/getList?accessToken=kk')
-      .then(res => res.json())
-      .then(resText => {
-        let data = Mock.mock(resText)
-        if (data.code === ERR_OK) {
-          this.dataSource = data.data
+      getNewsList().then(res => {
+        if (res.base_resp.ret === ERR_OK) {
+          this.dataSource = res.app_msg_list
         }
-        // console.log(data)
       })
-      .catch(err => {
-        console.warn(err)
-      })
+      // fetch('http://rapapi.org/mockjs/26963/getList?accessToken=kk')
+      // .then(res => res.json())
+      // .then(resText => {
+      //   let data = Mock.mock(resText)
+      //   if (data.code === ERR_OK) {
+      //     this.dataSource = data.data
+      //   }
+      //   // console.log(data)
+      // })
+      // .catch(err => {
+      //   console.warn(err)
+      // })
     }
   },
   components: {

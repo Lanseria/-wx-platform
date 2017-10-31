@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    IT之家
+    柠檬资讯
   </div>
 </template>
 
