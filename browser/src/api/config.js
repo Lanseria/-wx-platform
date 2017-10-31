@@ -15,7 +15,7 @@ export const options = {
  * type:9
  */
 export const commonParams = {
-  token: 860762349,
+  token: 1214495473,
   lang: 'zh_CN',
   f: 'json',
   ajax: 1,

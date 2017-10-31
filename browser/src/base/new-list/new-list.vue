@@ -3,7 +3,7 @@
     <ul>
       <li class="item" v-for="(article, index) in news" :key="index" @click="selectItem(article)">
         <div class="img">
-          <img :src="article.cover" alt="">
+          <img :src="'http://read.html5.qq.com/image?src=forum&q=5&r=0&imgflag=7&imageUrl'+article.cover" alt="">
         </div>
         <div class="content">
           <h2 class="name">{{article.title}}</h2>

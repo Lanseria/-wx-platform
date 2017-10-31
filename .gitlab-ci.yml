@@ -1,0 +1,17 @@
+image: node:8
+
+variables:
+  NODE_ENV: gitlab-ci
+
+browser:
+  script:
+    - cd browser
+    - yarn --frozen-lockfile
+    - yarn lint
+    - yarn build
+
+server_api:
+  script:
+    - cd server_api
+    - yarn --frozen-lockfile
+    - yarn test
