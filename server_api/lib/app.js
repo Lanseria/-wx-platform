@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _axios = require('axios');
 
 var _axios2 = _interopRequireDefault(_axios);
@@ -57,7 +61,8 @@ apiRouters.get('/getWxNewsList', function (req, res) {
 
 app.use('/api', apiRouters);
 
-module.exports = app;
+exports.default = app;
+
 
 app.listen(port, function () {
   console.log(`app is listening at port ${port}`);

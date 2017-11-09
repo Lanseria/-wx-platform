@@ -7,8 +7,7 @@ let app = express()
 let apiRouters = express.Router()
 let Routers = express.Router()
 
-import { returnCookie, wxUrl, token } from './config';
-import default from 'axios';
+import { returnCookie, wxUrl, token } from './config'
 
 apiRouters.get('/getWxPlatform', function (req, res) {
   const url = wxUrl + '/searchbiz'
