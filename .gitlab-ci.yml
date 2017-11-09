@@ -14,4 +14,5 @@ server_api:
   script:
     - cd server_api
     - yarn --frozen-lockfile
+    - yarn build
     - yarn test
