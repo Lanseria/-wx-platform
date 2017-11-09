@@ -16,7 +16,7 @@ var _path2 = _interopRequireDefault(_path);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const cookiefile = _path2.default.resolve('.', 'cookie');
+const cookiefile = _path2.default.resolve(__dirname, '../cookie');
 const txt = _fs2.default.readFileSync(cookiefile);
 
 function returnCookie() {

@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-const cookiefile = path.resolve('.', 'cookie')
+const cookiefile = path.resolve(__dirname ,'../cookie')
 const txt = fs.readFileSync(cookiefile)
 
 export function returnCookie () {

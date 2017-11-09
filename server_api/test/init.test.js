@@ -1,4 +1,4 @@
-var app = require('../lib/app')
+var app = require('../lib/app').default
 var expect = require('chai').expect
 var supertest = require('supertest')
 var request = supertest(app)
