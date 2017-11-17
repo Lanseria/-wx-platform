@@ -7,14 +7,20 @@ let app = express()
 let apiRouters = express.Router()
 let Routers = express.Router()
 
-import { returnCookie, wxUrl, token } from './config'
+import {
+  returnCookie,
+  wxUrl,
+  token,
+  host,
+  referer
+} from './config'
 
 apiRouters.get('/getWxPlatform', function (req, res) {
   const url = wxUrl + '/searchbiz'
   axios.get(url, {
     headers: {
-      referer: 'https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit_v2&action=edit&isNew=1&type=10&lang=zh_CN&token=' + token,
-      host: 'mp.weixin.qq.com',
+      referer: referer + token,
+      host: host,
       cookie: returnCookie()
     },
     params: req.query
@@ -33,8 +39,8 @@ apiRouters.get('/getWxNewsList', function (req, res) {
   const url = wxUrl + '/appmsg'
   axios.get(url, {
     headers: {
-      referer: 'https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit_v2&action=edit&isNew=1&type=10&lang=zh_CN&token=' + token,
-      host: 'mp.weixin.qq.com',
+      referer: referer + token,
+      host: host,
       cookie: returnCookie()
     },
     params: req.query

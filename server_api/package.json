@@ -18,8 +18,7 @@
     "mochawesome": "^2.3.1"
   },
   "scripts": {
-    "dev": "node app.js",
-    "start": "babel-node src/app.js",
+    "dev": "babel-node src/app.js",
     "build": "babel src --out-dir lib",
     "test": "mocha"
   },
