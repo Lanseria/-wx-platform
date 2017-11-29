@@ -5,14 +5,14 @@ variables:
 
 browser:
   script:
-    - cd browser
+    - cd browser_new
     - yarn --frozen-lockfile
     - yarn lint
     - yarn build
 
-server_api:
+server_express:
   script:
-    - cd server_api
+    - cd server_express
     - yarn --frozen-lockfile
     - yarn build
     - yarn test

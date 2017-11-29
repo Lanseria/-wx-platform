@@ -1,9 +1,14 @@
 import fs from 'fs'
 import path from 'path'
-const cookiefile = path.resolve(__dirname ,'../cookie')
+
+export const firstUser = 0
+export const port = 7780
+export const dbUrl = 'mongodb://localhost/wxplatform'
+
+const cookiefile = path.resolve(__dirname, '../cookie')
 const txt = fs.readFileSync(cookiefile)
 
-export function returnCookie () {
+export function returnCookie() {
   return txt
 }
 
@@ -13,4 +18,4 @@ export const referer = 'https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_e
 
 export const host = 'mp.weixin.qq.com'
 
-export const token = 798386145
+export const token = 330052408

@@ -5,17 +5,17 @@ var request = supertest(app)
 var config = require('../lib/config')
 
 describe('最初API转发接口测试', function () {
-  it('/getWxPlatform搜索公众号信息', function (done) {
+  it('/searchbiz搜索公众号信息', function (done) {
     request
-      .get('/api/getWxPlatform')
+      .get('/api/cgi-bin/searchbiz')
       .query({
         action: 'search_biz',
-        token: 798386145,
+        token: config.token,
         lang: 'zh_CN',
         f: 'json',
         ajax: 1,
-        random: 0.5222707753130587,
-        query: '中大青年',
+        random: 0.6553002362412914,
+        query: 'ui',
         begin: 0,
         count: 5
       }).expect(200)
@@ -34,9 +34,9 @@ describe('最初API转发接口测试', function () {
         done()
       })
   })
-  it('/getgetWxNewsList接口测试', function (done) {
+  it('/appmsg取出公众号历史记录', function (done) {
     request
-      .get('/api/getWxNewsList')
+      .get('/api/cgi-bin/appmsg')
       .query({
         token: config.token,
         lang: 'zh_CN',

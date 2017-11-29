@@ -1,79 +1,50 @@
-import axios from 'axios'
 import express from 'express'
-import {
-  returnCookie,
-  wxUrl,
-  token,
-  host,
-  referer
-} from './config'
-import { writeInMongo } from './writeRecords'
+import superagent from 'superagent'
+import apiRouters from './routes/cgiBin'
+import bodyParser from 'body-parser'
+import logger from 'morgan'
 
-const port = 7780
+import { port } from './config'
 
 let app = express()
-let apiRouters = express.Router()
+app.use(bodyParser.json())
 
-apiRouters.get('/:n', function (req, res, next) {
-  const paramsName = ['searchbiz', 'appmsg']
-  if (req.params.n == paramsName[0] || req.params.n == paramsName[1]) {
-    next()
-  } else {
-    res.send('error api interface')
-  }
-})
 
-apiRouters.get('/searchbiz', function (req, res, next) {
-  const url = wxUrl + '/searchbiz'
-  axios.get(url, {
-    headers: {
-      referer: referer + token,
-      host: host,
-      cookie: returnCookie()
-    },
-    params: req.query
-  }).then((response) => {
-    res.locals.jsonp = response.data
-    next()
-  }).catch(e => {
-    console.log(e)
-  })
-})
 
+// 微信防盗链，但是不支持下载，只能放在img src中可以显示
 /**
- * 通过微信公众号返回文章的转发api
+ * from https://github.com/44886/imgBridge/blob/master/imgBridge.js
  */
-apiRouters.get('/appmsg', function (req, res, next) {
-  const url = wxUrl + '/appmsg'
-  axios.get(url, {
-    headers: {
-      referer: referer + token,
-      host: host,
-      cookie: returnCookie()
-    },
-    params: req.query
-  }).then((response) => {
-    res.locals.jsonp = response.data
-    next()
-  }).catch(e => {
-    console.log(e)
+app.get('/img', function (req, res) {
+  res.writeHead(200, {
+    'Content-Type': 'image/*'
   })
+  let url = req.query.url
+  if (!url) {
+    res.send("")
+    return false
+  }
+  superagent.get(req.query.url)
+    .set('Referer', '')
+    .set("User-Agent",
+    'User-Agent:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36 Core/1.47.933.400 QQBrowser/9.4.8699.400'
+    )
+    .end(function (err, result) {
+      if (err) {
+        //res.send(err)
+        return false
+      }
+      res.end(result.body)
+      return
+    })
 })
-
-apiRouters.get('/:n', function (req, res) {
-  req.query.jsonpCallback = req.query.jsonpCallback || 'wxJsonpCallback'
-  res.send(`${req.query.jsonpCallback}(${JSON.stringify(res.locals.jsonp)})`)
-  const url = `${wxUrl}/${req.params.n}`
-  // try {
-  //   const con = await writeInMongo(url, res)
-  //   console.log(con)
-  // } catch (error) {
-  //   console.log(error)
-  // }
-})
-
 app.use('/api', apiRouters)
-
+var env = process.env.NODE_ENV || 'development'
+if ('development' === env) {
+  app.set('showStackError', true)
+  app.use(logger(':method :url :status'))
+  app.locals.pretty = true
+}
 
 export default app
 
