@@ -1,0 +1,1 @@
+export const SET_USERTOKEN = 'SET_USERTOKEN'
