@@ -1,9 +1,10 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
-var ObjectId = Schema.Types.ObjectId
+// var ObjectId = Schema.Types.ObjectId
 var ArticleSchema = new Schema({
   aid: {
-    type: String
+    type: String,
+    unique: true
   },
   appmsgid: {
     type: String

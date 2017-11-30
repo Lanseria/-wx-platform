@@ -1,12 +1,14 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
-var ObjectId = Schema.Types.ObjectId
+// var ObjectId = Schema.Types.ObjectId
 var MediaPlatformSchema = new Schema({
   alias: {
-    type: String
+    type: String,
+    unique: true
   },
   fakeid: {
-    type: String
+    type: String,
+    unique: true
   },
   nickname: {
     type: String

@@ -5,7 +5,11 @@ import {
   host,
   referer
 } from '../config'
-
+/**
+ * 利用 axios 工具进行 csrf 获取 wx_api 数据
+ * @param {*抓取链接} url
+ * @param {*get 参数对象列表} query
+ */
 export default async function getter (url, query) {
   try {
     const result = await axios.get(url, {

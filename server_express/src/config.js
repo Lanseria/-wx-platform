@@ -8,7 +8,7 @@ export const dbUrl = 'mongodb://localhost/wxplatform'
 const cookiefile = path.resolve(__dirname, '../cookie')
 const txt = fs.readFileSync(cookiefile)
 
-export function returnCookie() {
+export function returnCookie () {
   return txt
 }
 
@@ -51,9 +51,9 @@ export function fakeAtReqParam (fakeid) {
 }
 /**
  * 增加一个可以使用图片链接的属性
- * @param {*微信原始数据} jsonpData 
+ * @param {*微信原始数据} jsonpData
  */
-export function addAntiTheftChainProcess(jsonpData) {
+export function addAntiTheftChainProcess (jsonpData) {
   if (jsonpData.list) {
     jsonpData.list.forEach(item => {
       item.ATC_round_head_img = `/img?url=${item.round_head_img}`
@@ -66,4 +66,3 @@ export function addAntiTheftChainProcess(jsonpData) {
   }
   return jsonpData
 }
-

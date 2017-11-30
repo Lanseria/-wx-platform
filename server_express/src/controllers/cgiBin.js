@@ -7,7 +7,7 @@ import { ERR_OK } from '../api/config'
 
 export function judgeProxyName (req, res, next) {
   const paramsName = ['searchbiz', 'appmsg']
-  if (req.params.n == paramsName[0] || req.params.n == paramsName[1]) {
+  if (req.params.n === paramsName[0] || req.params.n === paramsName[1]) {
     next()
   } else {
     res.send('error api interface')

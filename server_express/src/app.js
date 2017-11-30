@@ -24,23 +24,21 @@ app.get('/img', function (req, res) {
   }
   superagent.get(req.query.url)
     .set('Referer', '')
-    .set("User-Agent",
-    'User-Agent:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36 Core/1.47.933.400 QQBrowser/9.4.8699.400'
+    .set('User-Agent', 'User-Agent:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36 Core/1.47.933.400 QQBrowser/9.4.8699.400'
     )
     .end(function (err, result) {
       if (err) {
-        //res.send(err)
+        // res.send(err)
         return false
       }
       res.end(result.body)
-      return
     })
 })
 
 app.use('/api', apiRouters)
 
 var env = process.env.NODE_ENV || 'development'
-if ('development' === env) {
+if (env === 'development') {
   app.set('showStackError', true)
   app.use(logger(':method :url :status'))
   app.locals.pretty = true
