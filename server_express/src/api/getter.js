@@ -6,7 +6,7 @@ import {
   referer
 } from '../config'
 
-export default async function getter (url, req) {
+export default async function getter (url, query) {
   try {
     const result = await axios.get(url, {
       headers: {
@@ -14,7 +14,7 @@ export default async function getter (url, req) {
         host: host,
         cookie: returnCookie()
       },
-      params: req.query
+      params: query
     })
     return result.data
   } catch (error) {

@@ -1,5 +1,6 @@
 import {
   wxUrl,
+  addAntiTheftChainProcess
 } from '../config'
 import getter from '../api/getter'
 import { ERR_OK } from '../api/config'
@@ -15,13 +16,13 @@ export function judgeProxyName (req, res, next) {
 
 export async function searchbiz (req, res, next) {
   const url = wxUrl + '/searchbiz'
-  res.locals.jsonp = await getter(url, req)
+  res.locals.jsonp = await getter(url, req.query)
   next()
 }
 
 export async function appmsg (req, res, next) {
   const url = wxUrl + '/appmsg'
-  res.locals.jsonp = await getter(url, req)
+  res.locals.jsonp = await getter(url, req.query)
   next()
 }
 
@@ -53,21 +54,4 @@ export async function processProxy (req, res) {
       }
     }))
   }
-}
-/**
- * 增加一个可以使用图片链接的属性
- * @param {*微信原始数据} jsonpData 
- */
-function addAntiTheftChainProcess (jsonpData) {
-  if (jsonpData.list) {
-    jsonpData.list.forEach(item => {
-      item.ATC_round_head_img = `/img?url=${item.round_head_img}`
-    })
-  }
-  if (jsonpData.app_msg_list) {
-    jsonpData.app_msg_list.forEach(item => {
-      item.ATC_cover = `/img?url=${item.cover}`
-    })
-  }
-  return jsonpData
 }

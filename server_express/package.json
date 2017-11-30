@@ -22,7 +22,8 @@
   "scripts": {
     "dev": "babel-node src/app.js",
     "build": "babel src --out-dir lib",
-    "test": "mocha"
+    "test": "mocha",
+    "inittest": "babel-node src/writeRecords.js"
   },
   "name": "server_api",
   "description": "cookie file need change everyday",
