@@ -32,11 +32,10 @@ async function getMediaPlatformInformation () {
 
   await saveAndUpdateRecord(mediaName, mp, SEARCHBIZ)
 
-  // 只保存一条
-  const sMediaPlatform = mp.list[0]
-
-  const data = await saveAndUpdateMediaPlatform(sMediaPlatform)
-  return data
+  for (const sMediaPlatform of mp.list) {
+    const data = await saveAndUpdateMediaPlatform(sMediaPlatform)
+    await getArticleInformation(data)
+  }
 }
 async function getArticleInformation (mp) {
   const at = await getter(atUrl, fakeAtReqParam(mp.fakeid))
@@ -46,6 +45,3 @@ async function getArticleInformation (mp) {
   }
 }
 getMediaPlatformInformation()
-  .then((mp) => {
-    getArticleInformation(mp)
-  })

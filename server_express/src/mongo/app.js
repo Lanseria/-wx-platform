@@ -33,12 +33,15 @@ export async function saveAndUpdateRecord (mediaName, mp, paramUrl) {
     const data = await _record.save()
     return data
   } else {
-    console.log(` - 插入: ${_record.query} 插入成功`)
+    console.log(` - 插入: ${record.query} 插入成功`)
     const data = await record.save()
     return data
   }
 }
-
+/**
+ * 将单个微信公众号对象存储到数据库
+ * @param {*单个微信公众号对象} sMediaPlatform
+ */
 export async function saveAndUpdateMediaPlatform (sMediaPlatform) {
   let mediaPlatform = new MediaPlatform(sMediaPlatform)
   try {
@@ -50,7 +53,10 @@ export async function saveAndUpdateMediaPlatform (sMediaPlatform) {
     return sMediaPlatform
   }
 }
-
+/**
+ * 将单个文章对象存储到数据库
+ * @param {*单个文章对象} sArticle
+ */
 export async function saveAndUpdateArticle (sArticle) {
   let _article = new Article(sArticle)
   try {
