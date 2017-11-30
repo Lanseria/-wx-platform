@@ -14,8 +14,8 @@ describe('最初API转发接口测试', function () {
         lang: 'zh_CN',
         f: 'json',
         ajax: 1,
-        random: 0.6553002362412914,
-        query: 'ui',
+        random: 0.6675306839370696,
+        query: 'bwm',
         begin: 0,
         count: 5
       }).expect(200)

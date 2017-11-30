@@ -9,8 +9,6 @@ import { port } from './config'
 let app = express()
 app.use(bodyParser.json())
 
-
-
 // 微信防盗链，但是不支持下载，只能放在img src中可以显示
 /**
  * from https://github.com/44886/imgBridge/blob/master/imgBridge.js
@@ -21,7 +19,7 @@ app.get('/img', function (req, res) {
   })
   let url = req.query.url
   if (!url) {
-    res.send("")
+    res.send('')
     return false
   }
   superagent.get(req.query.url)
@@ -38,7 +36,9 @@ app.get('/img', function (req, res) {
       return
     })
 })
+
 app.use('/api', apiRouters)
+
 var env = process.env.NODE_ENV || 'development'
 if ('development' === env) {
   app.set('showStackError', true)
