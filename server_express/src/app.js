@@ -1,8 +1,11 @@
 import express from 'express'
 import superagent from 'superagent'
-import apiRouters from './routes/cgiBin'
 import bodyParser from 'body-parser'
 import logger from 'morgan'
+
+// routes
+import cgiBin from './routes/cgiBin'
+import user from './routes/user'
 
 import { port } from './config'
 
@@ -35,7 +38,8 @@ app.get('/img', function (req, res) {
     })
 })
 
-app.use('/api', apiRouters)
+app.use('/api', cgiBin)
+app.use('/user', user)
 
 var env = process.env.NODE_ENV || 'development'
 if (env === 'development') {
