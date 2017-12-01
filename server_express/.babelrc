@@ -1,16 +1,15 @@
 {
   "presets": [
-    "env"
+    ["env", {
+      "targets": {
+        "node": true
+      },
+      "useBuiltIns": true
+    }]
   ],
   "plugins": [
     [
-      "transform-runtime",
-      {
-        "helpers": false,
-        "polyfill": false,
-        "regenerator": true,
-        "moduleName": "babel-runtime"
-      }
+      "transform-runtime"
     ]
   ]
 }
