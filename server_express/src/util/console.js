@@ -3,12 +3,14 @@ import chalk from 'chalk'
 const log = console.log
 // const TYPE = ['bgcyan', 'bgYellow', 'bgRed']
 
-export function consoleType (typeIndex, prefix, msg) {
+export function consoleType (typeIndex, prefix, msg, data) {
   let jsonData = {}
+  if (data) {
+    jsonData = data
+  }
   switch (typeIndex) {
     case 0:
       log(chalk.bgGreen(` √ ${prefix} `) + ` > ${msg}`)
-      
       break
     case 1:
       log(chalk.yellow(` ! ${prefix} `) + ` > ${msg}`)

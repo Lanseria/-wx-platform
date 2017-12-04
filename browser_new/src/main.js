@@ -22,6 +22,7 @@ import {
 } from 'cube-ui'
 import App from './App'
 import router from './router'
+import '@/common/stylus/index.styl'
 
 Vue.use(Button)
 Vue.use(Checkbox)

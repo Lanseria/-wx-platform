@@ -23,6 +23,7 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import api from '@/api'
+import User from '@/common/js/user'
 import WxPage from '@/components/wx-page'
 import InputOption from '@/components/input-option'
 export default {
@@ -34,18 +35,18 @@ export default {
     }
   },
   created () {
-    if (this.userToken) {
+    if (this.user || this.user._id + this.user.username === this.user.userToken) {
       this.$router.replace('/index')
     }
   },
   computed: {
     ...mapGetters([
-      'userToken'
+      'user'
     ])
   },
   methods: {
     ...mapMutations({
-      setUserToken: 'SET_USERTOKEN'
+      setUser: 'SET_USER'
     }),
     async postSignup () {
       let toast = this.$createToast({
@@ -59,7 +60,7 @@ export default {
           password: this.password
         })
         this._id = res.data
-        this.setUserToken(this._id)
+        this.setUser(new User(this._id, this.username))
         toast.hide()
         toast = this.$createToast({
           time: 1000,

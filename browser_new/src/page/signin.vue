@@ -34,18 +34,18 @@ export default {
     }
   },
   created () {
-    if (this.userToken) {
+    if (this.user) {
       this.$router.replace('/index')
     }
   },
   computed: {
     ...mapGetters([
-      'userToken'
+      'user'
     ])
   },
   methods: {
     ...mapMutations({
-      setUserToken: 'SET_USERTOKEN'
+      setUser: 'SET_USER'
     }),
     async getSignin () {
       let toast = this.$createToast({
@@ -54,10 +54,7 @@ export default {
       })
       toast.show()
       try {
-        const res = await api.post('/user/authenticate', {
-          username: this.username,
-          password: this.password
-        })
+        const res = await api.get(`/user/?username=${this.username}&password=${this.password}`)
         this._id = res.data
         toast.hide()
         toast = this.$createToast({

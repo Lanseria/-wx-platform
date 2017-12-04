@@ -26,8 +26,9 @@ export async function signup (req, res) {
     res.status(409).send(consoleType(1, '重复', '相同登录名用户已存在')) // 相同登录名用户已存在
   } else {
     const _id = await insertUserRetId(_user)
-    consoleType(0, '成功', '注册登录成功')
-    res.status(200).send(_id) // 暂时先用 _id 去标识 auth-token
+    res.status(200).send(consoleType(0, '成功', '注册登录成功', {
+      token: _id
+    })) // 暂时先用 _id 去标识 auth-token
   }
 }
 /**
@@ -48,8 +49,9 @@ export async function signin (req, res) {
       const isMatch = await user.comparePassword(_user.password)
       if (isMatch) {
         await User.update({ _id: user._id }, { $inc: { pv: 1 } })
-        consoleType(0, '成功', '登录成功')
-        res.status(200).send(user._id) // 暂时先用 _id 去标识 auth-token
+        res.status(200).send(consoleType(0, '成功', '登录成功', {
+          token: user._id
+        })) // 暂时先用 _id 去标识 auth-token
       } else {
         res.status(401).send(consoleType(1, '警告', '登录失败：密码错误')) // 登录失败：密码错误
       }
