@@ -23,6 +23,7 @@ import {
 import App from './App'
 import router from './router'
 import '@/common/stylus/index.styl'
+import store from './store'
 
 Vue.use(Button)
 Vue.use(Checkbox)
@@ -44,5 +45,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })

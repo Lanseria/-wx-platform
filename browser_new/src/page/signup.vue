@@ -36,7 +36,7 @@ export default {
   },
   created () {
     if (this.user || this.user._id + this.user.username === this.user.userToken) {
-      this.$router.replace('/index')
+      this.$router.replace('/')
     }
   },
   computed: {

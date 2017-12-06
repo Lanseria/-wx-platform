@@ -34,8 +34,8 @@ export default {
     }
   },
   created () {
-    if (this.user) {
-      this.$router.replace('/index')
+    if (this.user.id) {
+      this.$router.replace('/')
     }
   },
   computed: {
@@ -62,7 +62,7 @@ export default {
           txt: '登录成功'
         })
         toast.show()
-        this.$router.replace('/index')
+        this.$router.replace('/')
       } catch (error) {
         if (error.response && error.response.status === 403) {
           toast.hide()

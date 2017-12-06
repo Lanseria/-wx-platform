@@ -1,11 +1,20 @@
 <template>
   <div id="app">
     <header class="title-bar">
-      <router-link to="/index" class="text" tag="h1">微信公众文章</router-link>
+      <router-link to="/" class="text" tag="h1">微信公众文章</router-link>
       <router-link to="/user" class="mine" tag="div">
         <span class="icon-mine"></span>
       </router-link>
     </header>
+    <section class="news-content" ref="mfct">
+      <ul class="news-list">
+        <li class="news-item border-bottom-1px" v-for="component in components">
+          <router-link class="link" :to="component.path">{{component.text}}<i
+              class="cubeic-arrow"></i>
+          </router-link>
+        </li>
+      </ul>
+    </section>
     <transition name="move">
       <router-view class="news-view"></router-view>
     </transition>
@@ -17,6 +26,64 @@ import BScroll from 'better-scroll'
 export default {
   data () {
     return {
+      components: [
+        {
+          path: '/button',
+          text: 'Button'
+        },
+        {
+          path: '/checkbox',
+          text: 'Checkbox'
+        },
+        {
+          path: '/checkbox-group',
+          text: 'CheckboxGroup'
+        },
+        {
+          path: '/loading',
+          text: 'Loading'
+        },
+        {
+          path: '/tip',
+          text: 'Tip'
+        },
+        {
+          path: '/popup',
+          text: 'Popup'
+        },
+        {
+          path: '/toast',
+          text: 'Toast'
+        },
+        {
+          path: '/picker',
+          text: 'Picker'
+        },
+        {
+          path: '/time-picker',
+          text: 'TimePicker'
+        },
+        {
+          path: '/dialog',
+          text: 'Dialog'
+        },
+        {
+          path: '/action-sheet',
+          text: 'ActionSheet'
+        },
+        {
+          path: '/scroll',
+          text: 'Scroll'
+        },
+        {
+          path: '/slide',
+          text: 'Slide'
+        },
+        {
+          path: '/index-list',
+          text: 'IndexList'
+        }
+      ]
     }
   },
   mounted () {

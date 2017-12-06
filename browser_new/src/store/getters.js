@@ -1,1 +1,1 @@
-export const userToken = state => state.userToken
+export const user = state => state.user

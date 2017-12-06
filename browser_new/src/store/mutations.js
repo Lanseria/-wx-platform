@@ -1,7 +1,7 @@
 import * as types from './mutation-types'
 const mutation = {
-  [types.SET_USERTOKEN] (state, userToken) {
-    state.userToken = userToken
+  [types.SET_USER] (state, user) {
+    state.user = user
   }
 }
 
