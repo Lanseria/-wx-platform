@@ -45,7 +45,8 @@ promise.then(async function (db) {
     }
   }
   async function getArticleInformation (mp) {
-    const at = await getter(atUrl, fakeAtReqParam(mp.fakeid))
+    let at = await getter(atUrl, fakeAtReqParam(mp.fakeid))
+    at = addAntiTheftChainProcess(at)
     let articleList = at.app_msg_list
     for (const article of articleList) {
       await saveAndUpdateArticle(article)

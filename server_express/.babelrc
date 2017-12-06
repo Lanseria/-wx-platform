@@ -1,11 +1,7 @@
 {
   "presets": [
-    ["env", {
-      "targets": {
-        "node": true
-      },
-      "useBuiltIns": true
-    }]
+    "env",
+    "stage-2"
   ],
   "plugins": [
     [

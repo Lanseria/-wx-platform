@@ -6,6 +6,7 @@ import logger from 'morgan'
 // routes
 import cgiBin from './routes/cgiBin'
 import user from './routes/user'
+import article from './routes/article'
 
 import { port } from './config'
 
@@ -40,6 +41,7 @@ app.get('/img', function (req, res) {
 
 app.use('/api', cgiBin)
 app.use('/user', user)
+app.use('/article', article)
 
 var env = process.env.NODE_ENV || 'development'
 if (env === 'development') {

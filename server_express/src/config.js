@@ -18,7 +18,7 @@ export const referer = 'https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_e
 
 export const host = 'mp.weixin.qq.com'
 
-export const token = 1641836221
+export const token = 1311908109
 
 export function fakeMpReqParam (query) {
   return {

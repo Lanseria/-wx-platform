@@ -10,13 +10,13 @@ export function consoleType (typeIndex, prefix, msg, data) {
   }
   switch (typeIndex) {
     case 0:
-      log(chalk.bgGreen(` √ ${prefix} `) + ` > ${msg}`)
+      log(chalk.green(` √ `) + `${prefix} > ${msg}`)
       break
     case 1:
-      log(chalk.yellow(` ! ${prefix} `) + ` > ${msg}`)
+      log(chalk.yellow(` ! `) + `${prefix} > ${msg}`)
       break
     case 2:
-      log(chalk.bgRed(` × ${prefix} `) + ` > ${msg}`)
+      log(chalk.red(` × `) + `${prefix} > ${msg}`)
       break
     default:
       log(chalk.bgBlack(` - ${prefix} > ${msg}`))
