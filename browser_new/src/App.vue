@@ -8,10 +8,11 @@
     </header>
     <section class="news-content" ref="mfct">
       <ul class="news-list">
-        <li class="news-item border-bottom-1px" v-for="component in components">
-          <router-link class="link" :to="component.path">{{component.text}}<i
+        <li class="news-item border-bottom-1px" v-for="article in articles" :key="article._id">
+          <img class="cover" :src="article.ATC_cover" :alt="article.digest" />
+          <a class="link" :href="article.link">{{article.title}}<i
               class="cubeic-arrow"></i>
-          </router-link>
+          </a>
         </li>
       </ul>
     </section>
@@ -22,69 +23,16 @@
 </template>
 
 <script>
+import {getArticles} from './api/getArticles'
 import BScroll from 'better-scroll'
 export default {
   data () {
     return {
-      components: [
-        {
-          path: '/button',
-          text: 'Button'
-        },
-        {
-          path: '/checkbox',
-          text: 'Checkbox'
-        },
-        {
-          path: '/checkbox-group',
-          text: 'CheckboxGroup'
-        },
-        {
-          path: '/loading',
-          text: 'Loading'
-        },
-        {
-          path: '/tip',
-          text: 'Tip'
-        },
-        {
-          path: '/popup',
-          text: 'Popup'
-        },
-        {
-          path: '/toast',
-          text: 'Toast'
-        },
-        {
-          path: '/picker',
-          text: 'Picker'
-        },
-        {
-          path: '/time-picker',
-          text: 'TimePicker'
-        },
-        {
-          path: '/dialog',
-          text: 'Dialog'
-        },
-        {
-          path: '/action-sheet',
-          text: 'ActionSheet'
-        },
-        {
-          path: '/scroll',
-          text: 'Scroll'
-        },
-        {
-          path: '/slide',
-          text: 'Slide'
-        },
-        {
-          path: '/index-list',
-          text: 'IndexList'
-        }
-      ]
+      articles: []
     }
+  },
+  created () {
+    this.loadArticles()
   },
   mounted () {
     this.$nextTick(() => {
@@ -93,6 +41,12 @@ export default {
         click: true
       })
     })
+  },
+  methods: {
+    async loadArticles () {
+      const {data} = await getArticles()
+      this.articles = data.data
+    }
   }
 }
 </script>
@@ -131,14 +85,20 @@ export default {
     bottom: 0
     overflow: scroll
     .news-list
-      padding-left: 10px
+      padding: 0 10px
       .news-item
-        height: 40px
+        display: flex
+        height: 80px
         line-height: 40px
+        .cover
+          flex: 0 0 150px 
+          width: 150px
+          padding: 5px;
+          border: 1px solid #eee;
+          box-sizing: border-box;
+          margin-right: 10px;
         .link
-          display: block
-          position: relative
-          width: 100%
+          flex: 1
           color: #333
           text-decoration: none
           outline: 0

@@ -4,9 +4,7 @@ import bodyParser from 'body-parser'
 import logger from 'morgan'
 
 // routes
-import cgiBin from './routes/cgiBin'
-import user from './routes/user'
-import article from './routes/article'
+import apiRouters from './routes'
 
 import { port } from './config'
 
@@ -39,9 +37,7 @@ app.get('/img', function (req, res) {
     })
 })
 
-app.use('/api', cgiBin)
-app.use('/user', user)
-app.use('/article', article)
+app.use('/api', apiRouters)
 
 var env = process.env.NODE_ENV || 'development'
 if (env === 'development') {

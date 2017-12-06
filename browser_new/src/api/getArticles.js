@@ -1,7 +1,6 @@
-import * as getData from './index'
+import api from './index'
 
-export function getArticles () {
-  return getData('', {
-
-  })
+export async function getArticles () {
+  const res = await api.get('/article')
+  return res
 }

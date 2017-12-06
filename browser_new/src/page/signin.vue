@@ -55,14 +55,19 @@ export default {
       toast.show()
       try {
         const res = await api.get(`/user/?username=${this.username}&password=${this.password}`)
-        this._id = res.data
+        this._id = res.data.token
+        this.setUser({
+          _id: this._id,
+          username: this.username,
+          userToken: this._id + this.username
+        })
         toast.hide()
         toast = this.$createToast({
           time: 1000,
           txt: '登录成功'
         })
         toast.show()
-        this.$router.replace('/')
+        this.$router.back()
       } catch (error) {
         if (error.response && error.response.status === 403) {
           toast.hide()
